@@ -81,7 +81,7 @@ app.post('/api/products', async (req, res) => {
 app.put('/api/products/:id', async (req, res) => {
   try {
     const id = Number(req.params.id);
-    const updated = await Product.findOneAndUpdate({ id }, req.body, { returnDocument: 'after' });
+    const updated = await Product.findOneAndUpdate({ id }, req.body, { new: true });
     if (!updated) return res.status(404).json({ message: 'Product not found' });
     res.json(updated);
   } catch (err) {
